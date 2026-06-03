@@ -1,0 +1,19 @@
+<h1>My Lists</h1>
+
+@if(listsResource.isLoading())
+{
+    <p>Loading...</p>
+}
+@else if(listsResource.error())
+{
+    <p>Error loading lists. Please try again later.</p> 
+}
+@else if(listsResource.value().length === 0)
+{
+    <p>No lists found. Create your first list!</p> 
+}
+@else
+{
+     <app-lists-component [lists]="listsResource.value()" (listDeleted)="deleteList($event)"></app-lists-component>
+}
+ 

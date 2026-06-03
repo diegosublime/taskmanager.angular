@@ -1,0 +1,29 @@
+.menu {
+
+    background-color: var(--color-secondary);
+    padding: 10px 20px;
+
+    &__wrapper {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__item {
+        margin-right: 20px;
+        padding: 5px 10px;
+        background-color: var(--color-background);
+        border-radius: 5px;
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        &:hover {
+            background-color: var(--color-primary);
+        }
+    }
+
+}

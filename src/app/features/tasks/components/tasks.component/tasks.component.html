@@ -1,0 +1,5 @@
+
+@for(task of tasks(); track task.id) {
+  <app-task-component [task]="task" (taskCompletionToggle)="toggleTaskCompletion($event)"></app-task-component>
+}   
+ 

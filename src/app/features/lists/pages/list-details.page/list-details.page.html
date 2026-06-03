@@ -1,0 +1,8 @@
+
+@if(currentTasks.isLoading()){
+<h2>List ... details</h2>
+} @else {
+<h2>List TODO details</h2>
+} 
+
+<app-tasks-component [tasks]="currentTasks.value()" (taskCompletionToggle)="toggleTaskCompletion($event)"></app-tasks-component> 

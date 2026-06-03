@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+$colors: (
+  primary: #3f51b5,
+  secondary: #ff4081,
+  success: #4caf50,
+  warning: #ff9800,
+  error: #f44336,
+  text: #222,
+  background: #fff
+);
+
+
+:root {
+    --color-primary: #{map-get($colors, primary)};
+    --color-text: #{map-get($colors, text)};
+    --color-secondary: #{map-get($colors, secondary)};
+    --color-success: #{map-get($colors, success)};
+    --color-warning: #{map-get($colors, warning)};
+    --color-error: #{map-get($colors, error)};
+    --color-background: #{map-get($colors, background)};
+}
+
+body {
+    font-family: Arial, sans-serif;  
+    margin: 0;
+    padding: 20px;
+}

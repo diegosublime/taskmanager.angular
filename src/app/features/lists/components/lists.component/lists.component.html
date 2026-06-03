@@ -1,0 +1,10 @@
+ 
+ 
+<ul class="lists">
+    @for(list of lists(); track list.id)
+    {
+        <li class="lists__item">
+            <app-list-component [list]="list" (listDeleted)="deleteList($event)"></app-list-component>
+        </li> 
+    }  
+</ul> 
