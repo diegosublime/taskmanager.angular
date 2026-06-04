@@ -2,6 +2,7 @@
 
     background-color: var(--color-secondary);
     padding: 10px 20px;
+    display: flex;
 
     &__wrapper {
         display: flex;
@@ -20,6 +21,20 @@
             color: var(--color-text);
             text-decoration: none;
         }
+
+        &:hover {
+            background-color: var(--color-primary);
+        }
+    }
+
+    &__logout {
+        margin-left: auto;
+        padding: 5px 10px;
+        background-color: var(--color-background);
+        border-radius: 5px;
+        color: var(--color-text);
+        border: none;
+        cursor: pointer;
 
         &:hover {
             background-color: var(--color-primary);
