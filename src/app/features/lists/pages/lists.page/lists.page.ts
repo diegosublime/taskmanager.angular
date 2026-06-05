@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { List } from '../../models/list';
 import { ListsService } from '../../services/lists.service';
-import { ListsComponent } from '../../components/lists.component/lists.component';
+import { ListsComponent } from '../../components/lists.component/lists.component'; 
 
 
 interface ListsServiceResponse { data?: List[]; isLoading: boolean; isError: boolean; };
@@ -25,6 +25,16 @@ export class ListsPage {
   
 
 
+constructor() {
+    effect(() => {
+      const data = this.listsResource.value();
+
+      if (data) {
+        console.log('HTTP response received:', data);
+      }
+    });
+  }
+  
 
 
 

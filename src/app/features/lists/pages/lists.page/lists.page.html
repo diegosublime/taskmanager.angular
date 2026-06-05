@@ -1,5 +1,5 @@
 <h1>My Lists</h1>
-
+ 
 @if(listsResource.isLoading())
 {
     <p>Loading...</p>
@@ -8,7 +8,7 @@
 {
     <p>Error loading lists. Please try again later.</p> 
 }
-@else if(listsResource.value().length === 0)
+@else if(!listsResource.hasValue())
 {
     <p>No lists found. Create your first list!</p> 
 }

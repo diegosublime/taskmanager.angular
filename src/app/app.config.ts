@@ -5,6 +5,17 @@ import { routes } from './app.routes';
 import { authConfig } from './auth/auth.config';
 import { provideAuth } from 'angular-auth-oidc-client';
 
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import {httpClientAuthInterceptorInterceptor} from './shared/interceptors/http-client-auth.interceptor-interceptor';
+  
 export const appConfig: ApplicationConfig = {
-  providers: [provideBrowserGlobalErrorListeners(), provideRouter(routes), provideAuth(authConfig)],
+  providers: [
+    provideBrowserGlobalErrorListeners(), 
+    provideRouter(routes), 
+    provideAuth(authConfig), 
+    provideHttpClient(
+      withInterceptors([
+        httpClientAuthInterceptorInterceptor
+      ])
+    )],
 };

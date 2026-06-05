@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core'; 
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { customAuthConfig } from '../../../auth/auth.config';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +11,11 @@ export class AuthService {
 
   //Private signals
   private isAuthenticated = signal(false);
-  private userData = signal(null);
+  private userData = signal(null); 
 
   //Public signals
   readonly isLoggedIn = this.isAuthenticated.asReadonly();
-  readonly getUserData = this.userData.asReadonly();
+  readonly getUserData = this.userData.asReadonly(); 
 
   checkAuth(){
       this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated, userData }) => {
@@ -45,6 +46,10 @@ export class AuthService {
     } 
     // Redirect to the logout endpoint of cognito
     window.location.href = customAuthConfig.amazonCognitoLogoutUrl; 
+  }
+
+  getAccessToken(): Observable<string> {
+    return this.oidcSecurityService.getAccessToken();
   }
   
 }

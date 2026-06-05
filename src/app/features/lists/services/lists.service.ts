@@ -1,7 +1,7 @@
 import { Injectable, resource, signal } from '@angular/core';
 import { List } from '../models/list';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { httpResource } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +12,16 @@ export class ListsService {
   private userId = signal('user1');
   private singleListId = signal("");
     
-  private listsResource = resource({
-    params: () => ({userId: this.userId()}),
-    loader: (params) => this.getListsForUser(params.params.userId),
-    defaultValue: [] as List[]
-  });
+  private listsResource = httpResource<List[]>(()=>({
+    url: `https://localhost:7267/api/lists?userId=${this.userId()}`,
+    method: 'GET', 
+    defaultValue: [] as List[]  
+  })); 
+  // private listsResource = resource({
+  //   params: () => ({userId: this.userId()}),
+  //   loader: (params) => this.getListsForUser(params.params.userId),
+  //   defaultValue: [] as List[]
+  // });
 
   private listByUserResource = resource({
       params: () => ({listId: this.singleListId()}),
@@ -61,7 +66,7 @@ export class ListsService {
   }
 
   deleteListById(id: string): Promise<void> {  
-    this.listsResource.set(this.listsResource.value().filter(list => list.id !== id))  
+    this.listsResource.set(this.listsResource.value()?.filter(list => list.id !== id))  
     //this.listsResource.reload();
     return new Promise((resolve) => {
       setTimeout(() => {
